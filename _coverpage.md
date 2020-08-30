@@ -10,7 +10,7 @@
 - 无需生成 html 文件
 - 众多主题
 
-[GitHub](https://github.com/docsifyjs/docsify/)
-[Get Started](#docsify)
+[GitHub](https://github.com/hanju123/iteam-blog)
+[Get Started](#iteam-blog)
 
 
