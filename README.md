@@ -1,6 +1,6 @@
-# 工具
+# 常用工具
 
-#### 
+
 ##### 1.如何将一个大的集合分成若干个小的集合
 ```java
  /**
@@ -27,6 +27,15 @@
 ```
 
 
+
+##### 1.如何对字符串加密加密
+
+```java
+public static void main(String[] args) {
+        String encrypt = SecurityUtil.encryptDes("密码", Constants.DB_KEY.getBytes());
+        System.out.println(encrypt);
+    }
+```
 
 
 
