@@ -1,25 +1,32 @@
-# 这是我文档网站
+# 工具
 
-#### 测试文档
-新的测试环境\
-那么接下来我们应该什么操作的呢\
-哈哈哈
-我终于搭建起来了哦
-
-## 开发的测试
-##### 我知道什么操作了
+#### 
+##### 1.如何将一个大的集合分成若干个小的集合
 ```java
-puplic static void main(String args[]){
-  
-        System.out.printIn("HelloWorld!");
-}
+ /**
+     * 批量分批次
+     * @param list
+     * @param len 大小
+     * @return
+     */
+    private static List<List<MaterialVo>> splitList(List<MaterialVo> list, int len) {
+        if (list == null || list.size() == 0 || len < 1) {
+            return null;
+        }
+        List<List<MaterialVo>> result = new ArrayList<List<MaterialVo>>();
+        int size = list.size();
+        int count = (size + len - 1) / len;
+        for (int i = 0; i < count; i++) {
+            List<MaterialVo> subList = list.subList(i * len, ((i + 1) * len > size ? size : len * (i + 1)));
+            result.add(subList);
+        }
+        return result;
+    }
 
 
 ```
 
-### 标题三
 
-#### 小标题
 
 
 
