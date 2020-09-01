@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="29436d0b-c71b-46bb-bd83-9f3ca43635b4" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -33,7 +32,7 @@
       </MavenGeneralSettings>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="-25" />
     <option name="y" value="110" />
     <option name="width" value="1130" />
@@ -95,7 +94,7 @@
       <option name="presentableId" value="Default" />
       <updated>1598919960696</updated>
       <workItem from="1598919961908" duration="981000" />
-      <workItem from="1598921702656" duration="1393000" />
+      <workItem from="1598921702656" duration="2559000" />
     </task>
     <task id="LOCAL-00001" summary="1.修改文件">
       <created>1598922541019</created>
@@ -104,16 +103,24 @@
       <option name="project" value="LOCAL" />
       <updated>1598922541019</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="1.添加加密方法">
+      <created>1598926494786</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1598926494786</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2374000" />
+    <option name="totallyTimeSpent" value="3540000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="7" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16621985" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16621985" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -151,7 +158,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="1.修改文件" />
-    <option name="LAST_COMMIT_MESSAGE" value="1.修改文件" />
+    <MESSAGE value="1.添加加密方法" />
+    <option name="LAST_COMMIT_MESSAGE" value="1.添加加密方法" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/.vscode/launch.json">
