@@ -81,6 +81,44 @@ public static String getIpAddr( HttpServletRequest request) {
 
 ```
 
+#### 4.如何去掉数据库的空格与参数比对
+
+```java
+select count(1) from LP_MST_WLMXB where isnull(rtrim(ltrim(name)),'')=isnull(rtrim(ltrim('60内开扇D(塑料型材)15cm-样空格测 试')),'')
+```
+
+#### 5.mapper文件里处理if标签中的对比字符串的问题
+
+```java
+		<if test='"已过期" ==limit and !"" ==limit'>
+            and getdate() &gt; a.time_to
+        </if>
+        <if test='"未过期" ==limit and !"" ==limit'>
+            and getdate() &lt; a.time_to
+        </if>
+        
+//报错的
+/*Caused by: org.apache.ibatis.exceptions.PersistenceException: 
+### Error querying database.  Cause: java.lang.NumberFormatException: For input string: "未过期"
+### Cause: java.lang.NumberFormatException: For input string: "未过期"
+*/
+//解决办法：
+            
+      <if test='limit == "已过期"  and !limit == ""'>
+            and getdate() &gt; a.time_to
+        </if>
+        <if test='limit == "未过期"  and !limit == ""'>
+            and getdate() &lt; a.time_to
+        </if>   
+//原因分析
+//1.把单引号换成双引号
+//2.变量尽量放在前面
+            
+            
+            
+            
+```
+
 
 
 
