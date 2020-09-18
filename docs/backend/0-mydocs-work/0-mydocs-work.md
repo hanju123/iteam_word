@@ -1,7 +1,7 @@
 # 常用工具方法
 
 
-#### 1.如何将一个大的集合分成若干个小的集合
+## 1.如何将一个大的集合分成若干个小的集合
 ```java
  /**
      * 批量分批次
@@ -28,7 +28,7 @@
 
 
 
-#### 2.如何对字符串加密加密
+## 2.如何对字符串加密加密
 
 ```java
 public static void main(String[] args) {
@@ -37,7 +37,7 @@ public static void main(String[] args) {
     }
 ```
 
-#### 3.如何获取前端得IP地址
+## 3.如何获取前端得IP地址
 
 ```java
     /**
@@ -81,13 +81,13 @@ public static String getIpAddr( HttpServletRequest request) {
 
 ```
 
-#### 4.如何去掉数据库的空格与参数比对
+## 4.如何去掉数据库的空格与参数比对
 
 ```java
 select count(1) from LP_MST_WLMXB where isnull(rtrim(ltrim(name)),'')=isnull(rtrim(ltrim('60内开扇D(塑料型材)15cm-样空格测 试')),'')
 ```
 
-#### 5.mapper文件里处理if标签中的对比字符串的问题
+## 5.mapper文件里处理if标签中的对比字符串的问题
 
 ```java
 		<if test='"已过期" ==limit and !"" ==limit'>
@@ -128,7 +128,7 @@ select count(1) from LP_MST_WLMXB where isnull(rtrim(ltrim(name)),'')=isnull(rtr
             
 ```
 
-#### 6.批量插入的sql语句
+## 6.批量插入的sql语句
 
 ```java
  update LP_RAL_MER_PRICE_TIMES
@@ -180,7 +180,7 @@ select count(1) from LP_MST_WLMXB where isnull(rtrim(ltrim(name)),'')=isnull(rtr
 update LP_RAL_AREA_MER_PRICE set MODIFY_UID =case when guid=? then ? end, MODIFY_TIME =case when guid=? then ? end, time_from =case when guid=? then ? end, time_to =case when guid=? then ? end, price =case when guid=? then ? end where guid in ( ? ) 
 ```
 
-#### 7.hashset去重
+## 7.hashset去重
 
 ```java
 List<String> beforeList = new ArrayList<String>();
@@ -220,7 +220,7 @@ List<String> beforeList = new ArrayList<String>();
 
 ```
 
-#### 8.校验时间段重复
+## 8.校验时间段重复
 
 ```java
        //参数
@@ -260,7 +260,7 @@ List<String> beforeList = new ArrayList<String>();
 
 
 
-#### 9.40W大数据批量导出受dubbo数据传输限制的问题
+## 9.40W大数据批量导出受dubbo数据传输限制的问题
 
 计算6W数据可达8M
 
