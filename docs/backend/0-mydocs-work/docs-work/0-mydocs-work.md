@@ -40,38 +40,45 @@ public static void main(String[] args) {
 ## 3.如何获取前端得IP地址
 
 ```java
+ 
     /**
-     * 获取请求ip以及
+     * ip常量
+     */
+    private static final  String IP="127.0.0.1";
+
+    /**
+     * 获取请求ip
      * @param request
      * @return
      */
-public static String getIpAddr( HttpServletRequest request) {
+    public static String getIpAddr( HttpServletRequest request) {
         String ipAddress = null;
-        //ipAddress = request.getRemoteAddr();
         ipAddress = request.getHeader("x-forwarded-for");
-        if(ipAddress == null || ipAddress.length() == 0 || "unknown".equalsIgnoreCase(ipAddress)) {
+        boolean flag2= ipAddress.length() == 0;
+        boolean flag3= "unknown".equalsIgnoreCase(ipAddress);
+        if(ipAddress == null || flag2 || flag3) {
             ipAddress = request.getHeader("Proxy-Client-IP");
         }
-        if(ipAddress == null || ipAddress.length() == 0 || "unknown".equalsIgnoreCase(ipAddress)) {
+        if(ipAddress == null || flag2 || flag3) {
             ipAddress = request.getHeader("WL-Proxy-Client-IP");
         }
-        if(ipAddress == null || ipAddress.length() == 0 || "unknown".equalsIgnoreCase(ipAddress)) {
+        if(ipAddress == null || flag2 || flag3) {
             ipAddress = request.getRemoteAddr();
-            if(ipAddress.equals("127.0.0.1")){
-                //根据网卡取本机配置的IP
-                InetAddress inet=null;
+            if(IP.equals(ipAddress)){
                 try {
-                    inet = InetAddress.getLocalHost();
+                    InetAddress inet = InetAddress.getLocalHost();
+                    ipAddress= inet.getHostAddress();
                 } catch (UnknownHostException e) {
-                    e.printStackTrace();
+                    LogUtil.sysEventError(e.getMessage());
                 }
-                ipAddress= inet.getHostAddress();
+
             }
 
         }
         //对于通过多个代理的情况，第一个IP为客户端真实IP,多个IP按照','分割
-        if(ipAddress!=null && ipAddress.length()>15){ //"***.***.***.***".length() = 15
-            if(ipAddress.indexOf(",")>0){
+        //"***.***.***.***".length() = 15
+        if(ipAddress!=null && ipAddress.length()>15){
+            if(ipAddress.indexOf(",")>=1){
                 ipAddress = ipAddress.substring(0,ipAddress.indexOf(","));
             }
         }
@@ -266,19 +273,19 @@ List<String> beforeList = new ArrayList<String>();
 
 处理方案又三种：
 
-1.在service层生成excel文件上传到fastDFS,前端通过fastDFS下载即可。
+**1.在service层生成excel文件上传到fastDFS,前端通过fastDFS下载即可。**
 
 优点：速度快，方便简单调用即可
 
 缺点：依赖文件系统，文件系统不可用该功能不可用
 
-2.通过controller层遍历的去调用service查询数据库，在controller进行拼接，返回给前端
+**2.通过controller层遍历的去调用service查询数据库，在controller进行拼接，返回给前端**
 
 优点：不依赖其他系统
 
 缺点：多次遍历查询数据库，速度变慢，网关响应容易超时
 
-3.通过service层一次查询并生成文件，在通过controller层遍历获取service层的生成文件，完成搬运工作
+**3.通过service层一次查询并生成文件，在通过controller层遍历获取service层的生成文件，完成搬运工作**
 
 优点：不依赖其他系统，只查询一次，速度快
 
@@ -286,7 +293,7 @@ List<String> beforeList = new ArrayList<String>();
 
 最终选择第三种方案
 
-第一种方案：在service层生成excel文件上传到fastDFS,前端通过fastDFS下载即可。建议使用，得需要fastDFS系统的相关资源
+**第一种方案**：在service层生成excel文件上传到fastDFS,前端通过fastDFS下载即可。建议使用，得需要fastDFS系统的相关资源
 
 ```java
 //controller
@@ -569,7 +576,7 @@ public class TimingDeleteExcel {
 
 
 
-第二种方案：通过controller层遍历的去调用service查询数据库，在controller进行拼接，返回给前端,不建议使用用时较长40W超过2分钟
+**第二种方案**：通过controller层遍历的去调用service查询数据库，在controller进行拼接，返回给前端,不建议使用用时较长40W超过2分钟
 
 ```java
  
@@ -885,7 +892,7 @@ public class TimingDeleteExcel {
 
 
 
-第三种方案：通过service层一次查询并生成文件，在通过controller层遍历获取service层的生成文件，完成搬运工作。推荐使用用时最短40W数据仅用20来秒
+**第三种方案**：通过service层一次查询并生成文件，在通过controller层遍历获取service层的生成文件，完成搬运工作。推荐使用用时最短40W数据仅用20来秒
 
 ```java
 
