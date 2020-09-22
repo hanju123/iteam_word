@@ -1229,7 +1229,35 @@ public class ReadeFile extends BaseModel<ReadeFile> {
 
 ```
 
+## 10.压缩文件
 
+```java
+/**
+ *
+ * @param srcfile 文件名数组
+ * @param zipfile 压缩后文件地址
+ */
+public static void zipFiles(java.io.File[] srcfile, java.io.File zipfile) {
+    byte[] buf = new byte[1048576];
+    try {
+        ZipOutputStream out = new ZipOutputStream(new FileOutputStream(
+                zipfile));
+        for (int i = 0; i < srcfile.length; i++) {
+            FileInputStream in = new FileInputStream(srcfile[i]);
+            out.putNextEntry(new ZipEntry(srcfile[i].getName()));
+            int len;
+            while ((len = in.read(buf)) > 0) {
+                out.write(buf, 0, len);
+            }
+            out.closeEntry();
+            in.close();
+        }
+        out.close();
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}
+```
 
 
 
