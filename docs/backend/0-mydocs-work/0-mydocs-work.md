@@ -1335,38 +1335,44 @@ select num from a where exists(select 1 from b where num=a.num)
 
 #### 12.在MySQL中重复的插入数据怎么办？
 
-```sql
+```java
 
 
+/*
 最常见的方式就是为字段设置主键或唯一索引，当插入重复数据时，抛出错误，程序终止，但这会给后续处理带来麻烦，因此需要对插入语句做特殊处理，尽量避开或忽略异常，下面我简单介绍一下，感兴趣的朋友可以尝试一下：
 这里为了方便演示，我新建了一个user测试表，主要有id，username，sex，address这4个字段，其中主键为id（自增），同时对username字段设置了唯一索引：
+*/
 
-
---01 insert ignore into
+//01 insert ignore into
+/*
 即插入数据时，如果数据存在，则忽略此次插入，前提条件是插入的数据字段设置了主键或唯一索引，测试SQL语句如下，当插入本条数据时，MySQL数据库会首先检索已有数据（也就是idx_username索引），如果存在，则忽略本次插入，如果不存在，则正常插入数据：
+*/
 insert ignore into user (username,sex,address) values("Jack","male","New York");
 
---02 on duplicate key update
+//02 on duplicate key update
+/*
 即插入数据时，如果数据存在，则执行更新操作，前提条件同上，也是插入的数据字段设置了主键或唯一索引，测试SQL语句如下，当插入本条记录时，MySQL数据库会首先检索已有数据（idx_username索引），如果存在，则执行update更新操作，如果不存在，则直接插入：
-
+*/
 insert  into user(username,sex,address) on duplicate key update user (username,sex,address) values("Jack","male","New York") on duplicate key update sex='male',address='New York';
 
 
---03 replace into
+//03 replace into
+/*
 即插入数据时，如果数据存在，则删除再插入，前提条件同上，插入的数据字段需要设置主键或唯一索引，测试SQL语句如下，当插入本条记录时，MySQL数据库会首先检索已有数据（idx_username索引），如果存在，则先删除旧数据，然后再插入，如果不存在，则直接插入：
-
+*/
 replace into  user (username,sex,address) values("Jack","male","New York");
 
 
 
---04 insert if not exists
+//04 insert if not exists
+/*
 即insert into … select … where not exist ... ，这种方式适合于插入的数据字段没有设置主键或唯一索引，当插入一条数据时，首先判断MySQL数据库中是否存在这条数据，如果不存在，则正常插入，如果存在，则忽略：
-
+*/
 insert  into user(username,sex,address) select "Jack","male","New York" from user where not exists(select username from user where username="Jack");
 
-
+/*
 目前，就分享这4种MySQL处理重复数据的方式吧，前3种方式适合字段设置了主键或唯一索引，最后一种方式则没有此限制，只要你熟悉一下使用过程，很快就能掌握的，网上也有相关资料和教程，介绍的非常详细，感兴趣的话，可以搜一下。
-
+*/
 ```
 
 
