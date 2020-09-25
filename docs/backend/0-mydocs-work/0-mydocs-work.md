@@ -1259,9 +1259,9 @@ public static void zipFiles(java.io.File[] srcfile, java.io.File zipfile) {
 
 
 
-#### 11.总结了30条了可以实际优化数据库的经验
+## 11.总结了30条了可以实际优化数据库的经验
 
-**1.**对查询进行优化，应尽量避免全表扫描，首先应考虑在 where 及 order by 涉及的列上建立索引。
+*1.*对查询进行优化，应尽量避免全表扫描，首先应考虑在 where 及 order by 涉及的列上建立索引。
 
 **2.**应尽量避免在 where 子句中对字段进行 null 值判断，否则将导致引擎放弃使用索引而进行全表扫描，如：select id from t where num is null可以在num上设置默认值0，确保表中num列没有null值，然后这样查询：select id from t where num=0
 
@@ -1333,7 +1333,7 @@ select num from a where exists(select 1 from b where num=a.num)
 
 
 
-#### 12.在MySQL中重复的插入数据怎么办？
+## 12.在MySQL中重复的插入数据怎么办？
 
 ```java
 
