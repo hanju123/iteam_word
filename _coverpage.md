@@ -10,7 +10,7 @@
 - 无需生成 html 文件
 - 众多主题
 
-[GitHub](https://github.com/hanju123/iteam-blog)
+[我的记录](https://iteam123.gitee.io/iteam_word/#/docs/backend/0-mydocs-work/0-mydocs-work)
 [Get Started](#iteam-blog)
 
 
